@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+{ % bootstrap_css % }
+{% block content %}
+<h3>프로필 수정</h3>
+<div>
+  {% if request.path_info == '/accounts/profile_update/' %}
+  <form action="{% url 'accounts:profile_update' %}" method="POST" enctype="multipart/form-data">
+    {% else %}
+    <form form action="{% url 'accounts:password_update' %}" method="POST">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <input type="submit" class="btn btn-primary">
+    </form>
+    {% endif %}
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" class="btn btn-primary">
+  </form>
+</div>
+{% endblock content %}
