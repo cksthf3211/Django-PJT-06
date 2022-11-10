@@ -19,7 +19,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             auth_login(request, user)
-            return redirect("reviews:index")
+            return redirect("accounts:index")
         else:
             print("error")
             print(form.error_messages)
@@ -51,4 +51,57 @@ def login(request):
 
 def logout(request):
     auth_logout(request)
+    return redirect("articles:index")
+
+
+@login_required
+def detail(request, pk):
+    user = get_object_or_404(get_user_model(), pk=pk)
+    context = {
+        "user": user,
+    }
+    return render(request, "accounts/detail.html", context)
+
+
+@login_required
+def profile_update(request):
+    if request.method == "POST":
+        form = CustomUserChangeForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect("accounts:detail", request.user.pk)
+    else:
+        form = CustomUserChangeForm(instance=request.user)
+    context = {
+        "form": form,
+    }
+    return render(request, "accounts/update.html", context)
+
+
+@login_required
+def password_update(request):
+    if request.method == "POST":
+        form = PasswordChangeForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)  ## 비밀번호 변경 후 로그아웃 방지
+            return redirect("accounts:detail", request.user.pk)
+    else:
+        form = PasswordChangeForm(request.user)
+    context = {
+        "form": form,
+    }
+    return render(request, "accounts/update.html", context)
+
+
+@login_required
+@require_POST
+def delete(request):
+    try:
+        request.user.delete()
+        auth_logout(request)
+        messages.success(request, "탈퇴하셨습니다.")
+    except:
+        messages.error(request, "error")
+        return render(request, "articles:index")
     return redirect("articles:index")
