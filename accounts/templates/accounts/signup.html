@@ -3,10 +3,14 @@
 {% load static %}
 { % bootstrap_css % }
 {% block content %}
-<h3>회원가입</h3>
-<form action="{% url 'accounts:signup' %}" method="POST" enctype="multipart/form-data">
-  {% csrf_token %}
-  {% bootstrap_form form %}
-  <input type="submit" class="btn btn-primary">
-</form>
+<div class="d-flex justify-content-center">
+  <div class="col-4 bg-light p-3 mb-5 bg-body">
+    <h3>회원가입</h3>
+    <form action="{% url 'accounts:signup' %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <input type="submit" class="btn btn-success w-100 mt-3" value="가입하기">
+    </form>
+  </div>
+</div>
 {% endblock content %}

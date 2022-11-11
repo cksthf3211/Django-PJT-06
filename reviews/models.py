@@ -10,7 +10,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 class Review(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
     title = models.CharField(max_length = 20)
-    content = models.TimeField()
+    content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     grade = models.IntegerField(

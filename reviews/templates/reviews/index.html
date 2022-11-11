@@ -1,6 +1,6 @@
-{% block content %} {% load django_bootstrap5 %}
+{% extends 'base.html' %} {% block content %} {% load django_bootstrap5 %} {% load static %} {% bootstrap_css %}
 
 <h2>index . TEST</h2>
-<a href="{% url 'reviews:create' %}"><button>리뷰작성</button></a>
+<a href="{% url 'reviews:create' %}" class="m-3"><button>리뷰작성</button></a>
 
 {% endblock content %}

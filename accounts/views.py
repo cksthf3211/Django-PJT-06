@@ -19,7 +19,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             auth_login(request, user)
-            return redirect("accounts:index")
+            return redirect("articles:index")
         else:
             print("error")
             print(form.error_messages)
@@ -81,7 +81,7 @@ def profile_update(request):
 @login_required
 def password_update(request):
     if request.method == "POST":
-        form = PasswordChangeForm(request.POST, request.FILES)
+        form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)  ## 비밀번호 변경 후 로그아웃 방지

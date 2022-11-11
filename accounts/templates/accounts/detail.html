@@ -3,32 +3,89 @@
 {% load static %}
 { % bootstrap_css % }
 {% block content %}
+<style>
+  .font_style {
+    text-decoration: none;
+    color: black;
+    text-align: center;
+  }
+</style>
 <div class="row mt-5">
+  <!-- 프로필 사이드 배너 -->
   {% if user == request.user %}
-  <div class="col-3 px-3 pt-3">
-    <h3 class="p-3 text-center">설정</h3>
+  <div class="col-3 px-5 pt-3">
+    <h3 class="p-3 text-center">{{ user.nickname }}</h3>
     <ul class="list-group">
-      <li class="pt-2 list-group-item list-group-item-action">
-        <a href="{% url 'accounts:profile_update' %}">프로필 설정</a>
+      <li class="pt-2 list-group-item list-group-item-action text-center">
+        <a href="{% url 'accounts:profile_update' %}" class="font_style">프로필 설정</a>
       </li>
-      <li class="pt-2 list-group-item list-group-item-action">
-        <a href="{% url 'accounts:password_update' %}">비밀번호 설정</a>
+      <li class="pt-2 list-group-item list-group-item-action text-center">
+        <a href="{% url 'accounts:password_update' %}" class="font_style">비밀번호 설정</a>
       </li>
-      <li class="pt-2 list-group-item list-group-item-action">
-        <a href="">계정 삭제</a>
+      <li class="pt-2 list-group-item list-group-item-action text-center">
+        <a class="font_style text-danger" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          계정 삭제
+        </a>
       </li>
     </ul>
   </div>
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">계정 삭제</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          계정의 모든 정보가 영구적으로 삭제됩니다.
+          <br>삭제하시겠습니까?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+          <form action="{% url 'accounts:delete' %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-danger" value="삭제">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   {% endif %}
-  <div class="container">
-    <h4 class="fw-bold">
-      {{ user.nickname }}
-    </h4>
-    {% if user.email %}
-    <div>{{ user.email }}</div>
-    {% else %}
-    <div>{{ no email }}</div>
-    {% endif %}
+  <!-- 프로필 -->
+  <div class="col-9 px-4">
+    <div class="container">
+      <div class="my-3 d-flex">
+        {% if user.profile_image %}
+        <img src="{{ user.profile_image.url }}" alt="{{ user.profile_image }}" class="rounded-circle">
+        {% else %}
+        <img src="{% static '/images/profile_default.png' %}" alt="default">
+        {% endif %}
+      </div>
+      <div class="mx-5 mt-3">
+        <h4 class="fw-bold">
+          아이디: {{ user.username }}
+        </h4>
+        {% if user.email %}
+        <div>
+          <p>email: {{ user.email }}</p>
+        </div>
+        {% else %}
+        <div>
+          <p>이메일 없음</p>
+        </div>
+        {% endif %}
+        <hr>
+        <div>
+          <h3>최근 본 상품</h3>
+        </div>
+        <hr>
+        <div>
+          <h3>장바구니</h3>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock content %}
