@@ -32,67 +32,6 @@
 {% block script %}
 {% endblock script %}
 
-
-<style>
-  .navbar-custom {
-
-    background-color: white;
-
-  }
-
-  /* change the brand and text color */
-  .navbar-custom .navbar-brand,
-  .navbar-custom .navbar-text {
-    color: rgba(255, 255, 255, .8);
-  }
-
-  /* change the link color and padding  */
-  .navbar-custom .navbar-nav .nav-link {
-    color: #C47AFF;
-    padding: .75rem 1rem;
-  }
-
-  body {
-    background-color: rgb(249, 249, 241);
-    font-family: 'Jua', sans-serif;
-  }
-
-  .navbar-menu li :hover {
-    background-color: #DEF5E5;
-    color: #8D72E1 !important;
-    border-radius: 2rem;
-  }
-
-  .nav-scroller {
-    position: relative;
-    z-index: 2;
-    height: 2.75rem;
-    overflow-y: hidden;
-  }
-
-  .nav-scroller .nav {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
-    padding-bottom: 1rem;
-    margin-top: -1px;
-    overflow-x: auto;
-    text-align: center;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .nav-scroller .nav-link {
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-    font-size: .875rem;
-  }
-</style>
-
-
-
 <body>
   <!-- Nav -->
   <nav class="navbar navbar-expand-lg navbar-custom"
@@ -191,6 +130,27 @@
   {% block content %}{% endblock content %}
   {% bootstrap_javascript %}
 
+
+  <div class="wrap">
+    <a href="#pop_info_1" class="btn_open"></a>
+
+
+    <div id="pop_info_1" class="pop_wrap" style="display:fixed;">
+      <div class="pop_inner" style="display: flex; flex-direction:column; flex-wrap:  wrap;">
+        <a href="https://lc.multicampus.com/k-digital/#/login"><img src="{% static '/images/believe.jpg' %}"
+            style="width: 400%;"></a>
+        <div class="ticloseBtnDiv"
+          stlye="position:abolute; top: 0px; left: 0px; box-sizing: border-box; outline: none;">
+          <button type="button" class="btn_close"><img
+              src="https://cdn.gamemeca.com/design/images/common/btn_adclose.png"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
   <script>
     var div2 = document.getElementsByClassName("search-txt");
 
@@ -219,6 +179,27 @@
     }
 
     init();
+
+    var target = document.querySelectorAll('.btn_open');
+    var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
+    var targetID;
+
+    // 팝업 열기
+    for (var i = 0; i < target.length; i++) {
+      target[i].addEventListener('click', function () {
+        targetID = this.getAttribute('href');
+        document.querySelector(targetID).style.display = 'block';
+      });
+    }
+
+    // 팝업 닫기
+    for (var j = 0; j < target.length; j++) {
+      btnPopClose[j].addEventListener('click', function () {
+        this.parentNode.parentNode.style.display = 'none';
+      });
+    }
+  </script>
+
 
   </script>
   <footer class="fixed-bottom text-center bg-white">© 2022 님아 돈 좀, Game Goods store by 17조</footer>
