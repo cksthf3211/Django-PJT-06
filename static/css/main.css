@@ -1,13 +1,13 @@
 .search-box {
   position: absolute;
-  top: 55%;
-  left: 50%;
+  top: 50%;
+  left: 71%;
   transform: translate(-50%, -50%);
-  height: 30%;
+  height: 34.5%;
   padding: 0px;
   border-radius: 6px;
   background: #ffffff;
-  box-shadow: 0px 0px 0 2px #9567ef;
+  box-shadow: 0px 0px 0 2px #000000;
 }
 
 .search-btn {
@@ -53,9 +53,8 @@
 
 .clicked {
   margin-left: 0px;
-  height: 37.4px;
-  margin-top: -2.1px;
+  height: 29px;
   border-radius: 6px 0 0 6px;
   outline: rgb(255, 255, 255);
-  box-shadow: 0px 0px 0 2.5px rgb(255 132 189);
+  box-shadow: 0px 0px 0 2.6px rgb(255, 0, 0);
 }
