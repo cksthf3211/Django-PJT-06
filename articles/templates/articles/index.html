@@ -3,26 +3,83 @@
 {% load django_bootstrap5 %}
 {% block body %}
 
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://dummyimage.com/1920x600/000/fff" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="https://dummyimage.com/1920x600/000/fff" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="https://dummyimage.com/1920x600/000/fff" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="https://dummyimage.com/1920x600/000/fff" class="d-block w-100" alt="...">
+  <div class="row row-cols-1 row-cols-md-4 mx-3 mt-3">
+    <div class="col mb-4">
+      <div class="card">
+        <img src="https://dummyimage.com/400x450/000/fff" class="card-img-top" alt="dummy image">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        </div>
+      </div>
     </div>
-    <div class="carousel-item">
-      <img src="https://dummyimage.com/1920x600/000/fff" class="d-block w-100" alt="...">
+    <div class="col mb-4">
+      <div class="card">
+        <img src="https://dummyimage.com/400x450/000/fff" class="card-img-top" alt="dummy image">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        </div>
+      </div>
     </div>
-    <div class="carousel-item">
-      <img src="https://dummyimage.com/1920x600/000/fff" class="d-block w-100" alt="...">
+    <div class="col mb-4">
+      <div class="card">
+        <img src="https://dummyimage.com/400x450/000/fff" class="card-img-top" alt="dummy image">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-4">
+      <div class="card">
+        <img src="https://dummyimage.com/400x450/000/fff" class="card-img-top" alt="dummy image">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        </div>
+      </div>
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+
+  <footer class="bg-dark my-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm text-center" id="information">
+          <h1 class="text-white p-4 mb-0">(주)GGSTORE</h1>
+          <h4 class="text-white p-4 mb-0">이메일</h4>
+          <h4 class="text-white p-4 mb-0">주소</h4>
+        </div>
+        <div class="col-sm text-center" id="cs-center">
+          <h1 class="text-white p-4 mb-0">고객센터</h1>
+        </div>
+        <div class="col-sm text-center" id="announcement">
+          <h1 class="text-white p-4 mb-0">공지사항</h1>
+        </div>
+      </div>
+    </div>
+  </footer>
+
 {% endblock body %}
