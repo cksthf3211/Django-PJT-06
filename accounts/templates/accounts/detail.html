@@ -13,7 +13,7 @@
 <div class="row mt-5">
   <!-- 프로필 사이드 배너 -->
   {% if user == request.user %}
-  <div class="col-3 px-3 pt-3">
+  <div class="col-3 px-5 pt-3">
     <h3 class="p-3 text-center">{{ user.nickname }}</h3>
     <ul class="list-group">
       <li class="pt-2 list-group-item list-group-item-action text-center">
@@ -56,25 +56,34 @@
   <!-- 프로필 -->
   <div class="col-9 px-4">
     <div class="container">
-      <h4 class="fw-bold">
-        아이디: {{ user.username }}
-      </h4>
-      {% if user.email %}
-      <div>
-        <p>email: {{ user.email }}</p>
+      <div class="my-3 d-flex">
+        {% if user.profile_image %}
+        <img src="{{ user.profile_imgae.url }}" alt="{{ user.profile_image }}" class="rounded-circle">
+        {% else %}
+        <img src="{% static '/images/profile_default.png' %}" alt="default">
+        {% endif %}
       </div>
-      {% else %}
-      <div>
-        <p>이메일 없음</p>
-      </div>
-      {% endif %}
-      <hr>
-      <div>
-        <h3>최근 본 상품</h3>
-      </div>
-      <hr>
-      <div>
-        <h3>장바구니</h3>
+      <div class="mx-5 mt-3">
+        <h4 class="fw-bold">
+          아이디: {{ user.username }}
+        </h4>
+        {% if user.email %}
+        <div>
+          <p>email: {{ user.email }}</p>
+        </div>
+        {% else %}
+        <div>
+          <p>이메일 없음</p>
+        </div>
+        {% endif %}
+        <hr>
+        <div>
+          <h3>최근 본 상품</h3>
+        </div>
+        <hr>
+        <div>
+          <h3>장바구니</h3>
+        </div>
       </div>
     </div>
   </div>
