@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Review, Comment
-from .form import ReviewForm, CommentForm
+from .forms import ReviewForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.contrib import messages
@@ -15,7 +15,7 @@ def create(request):
             temp = form.save(commit=False)
             temp.user = request.user
             temp.save()
-            return redirect('reviews:index')
+            return redirect('reviews:detail')
     else:
         form = ReviewForm
     context = {
@@ -24,11 +24,11 @@ def create(request):
     return render(request, 'reviews/create.html' ,context)
 
 def detail(request, pk):
-    info = Review.objects.get(pk=pk)
+    review = Review.objects.get(pk=pk)
     form = CommentForm()
-    temp = info.comment_set.all()
+    temp = review.comment_set.all()
     context = {
-        'info' : info,
+        'review' : review,
         'form' : form,
         'temp' : temp,
     }
@@ -97,4 +97,4 @@ def comment_delete(request, pk, comment_pk):
         return redirect('reviews:detail', pk)
 
 def index(request):
-    return render(request, 'reviews/index')
+    return render(request, 'reviews/index.html')

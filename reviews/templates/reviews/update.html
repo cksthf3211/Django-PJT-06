@@ -1,11 +1,14 @@
-{% block content %} {% load django_bootstrap5 %}
-    <h2>리뷰작성</h2>
-    <div class="container">
-        <form action="" method="POST" enctype="multipart/form-data">
-            {% csrf_token%}
-            {% bootstrap_form form %}
-            <button class="btn" type="submit">OK</button>
-            <a href="{% url 'articles:index' %}" class="btn">Cancel</a>
-        </form>
+{% extends 'base.html' %} {% block content %} {% load django_bootstrap5 %} {% load static %} {% bootstrap_css %}
+
+<div class="d-flex justify-content-center">
+    <div class="col-4 bg-light p-3 mb-5 bg-body">
+      <h3>리뷰 수정</h3>
+      <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" class="btn btn-success w-100 mt-3" value="수정하기">
+      </form>
     </div>
+  </div>
+
 {% endblock content %}
