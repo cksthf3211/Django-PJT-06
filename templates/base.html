@@ -23,52 +23,53 @@
   <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
   <title>GG Store</title>
 
-  </head>
+</head>
 
-  {% bootstrap_css %}
-  {% block css %}
-  {% endblock css %}
+{% bootstrap_css %}
+{% block css %}
+{% endblock css %}
 
-  {% block script %}
-  {% endblock script %}
+{% block script %}
+{% endblock script %}
 
 
 <style>
   .navbar-custom {
-  
+
     background-color: white;
- 
+
   }
-  
+
   /* change the brand and text color */
   .navbar-custom .navbar-brand,
   .navbar-custom .navbar-text {
-      color: rgba(255,255,255,.8);
+    color: rgba(255, 255, 255, .8);
   }
-  
+
   /* change the link color and padding  */
   .navbar-custom .navbar-nav .nav-link {
     color: #C47AFF;
     padding: .75rem 1rem;
   }
-  
+
   body {
     background-color: rgb(249, 249, 241);
     font-family: 'Jua', sans-serif;
   }
-  
+
   .navbar-menu li :hover {
     background-color: #DEF5E5;
     color: #8D72E1 !important;
     border-radius: 2rem;
   }
+
   .nav-scroller {
     position: relative;
     z-index: 2;
     height: 2.75rem;
     overflow-y: hidden;
   }
-  
+
   .nav-scroller .nav {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -82,14 +83,13 @@
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
   }
-  
+
   .nav-scroller .nav-link {
     padding-top: .75rem;
     padding-bottom: .75rem;
     font-size: .875rem;
   }
-
-  </style>  
+</style>
 
 
 
@@ -136,22 +136,23 @@
               <li><a class="dropdown-item" href="">HADES</a></li>
               <li><a class="dropdown-item" href="">RARE</a></li>
             </ul>
-            <li class="nav-item">
-              <ul class="navbar-nav ms-auto mb-2 mb-lg-0 navbar-menu">
-                <div class="search-box">
-                  <form action="" method="post">
-                    {% csrf_token %}
-                    <input class="search-txt" type="text" placeholder="" size="15" name="q" value="{{q}}">
-                    <button class="search-btn" type="submit" maxlength="50">
-                      <img src="../static/images/animat-rocket.gif" alt="" class="jb-b" style="width:240%; margin-right:5px;">
-                      <img src="../static/images/animat-rocket-color.gif" alt="" class="jb-c"
-                        style="width:21%; margin-top: -6px; margin-left:183px;">
-                    </button>
-                  </form>
-                </div>
-              </li>
-            </ul>
+          <li class="nav-item">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 navbar-menu">
+              <div class="search-box">
+                <form action="" method="post">
+                  {% csrf_token %}
+                  <input class="search-txt" type="text" placeholder="" size="15" name="q" value="{{q}}">
+                  <button class="search-btn" type="submit" maxlength="50">
+                    <img src="../static/images/animat-rocket.gif" alt="" class="jb-b"
+                      style="width:240%; margin-right:5px;">
+                    <img src="../static/images/animat-rocket-color.gif" alt="" class="jb-c"
+                      style="width:21%; margin-top: -6px; margin-left:183px;">
+                  </button>
+                </form>
+              </div>
           </li>
+        </ul>
+        </li>
         </ul>
 
 
@@ -160,11 +161,11 @@
           {% if user.is_authenticated %} {# 유저가 로그인 중이면 #}
           {% if user.profile_image %}
           {% if 'http' in user.image_string %}
-          <a href="{% url 'accounts:userpage' request.user.pk %}" class="nav-link"><span class="p-2"><img
+          <a href="{% url 'accounts:detail' request.user.pk %}" class="nav-link"><span class="p-2"><img
                 class="profile-image rounded-circle" src="{{ user.profile_image }}" style="width: 3rem; height: 3rem;"
                 alt=""></span>{{ user.name }} 님 페이지</a>
           {% else %}
-          <a href="{% url 'accounts:userpage' request.user.pk %}" class="nav-link"><span class="p-2"><img
+          <a href="{% url 'accounts:detail' request.user.pk %}" class="nav-link"><span class="p-2"><img
                 class="profile-image rounded-circle" src="{{ user.profile_image.url }}"
                 style="width: 3rem; height: 3rem;" alt=""></span>{{ user.name }} 님 페이지</a>
           {% endif %}
