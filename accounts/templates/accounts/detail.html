@@ -58,7 +58,7 @@
     <div class="container">
       <div class="my-3 d-flex">
         {% if user.profile_image %}
-        <img src="{{ user.profile_imgae.url }}" alt="{{ user.profile_image }}" class="rounded-circle">
+        <img src="{{ user.profile_image.url }}" alt="{{ user.profile_image }}" class="rounded-circle">
         {% else %}
         <img src="{% static '/images/profile_default.png' %}" alt="default">
         {% endif %}
