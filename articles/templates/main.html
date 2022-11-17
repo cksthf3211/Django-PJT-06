@@ -2,14 +2,12 @@
 {% load static %}
 {% load django_bootstrap5 %}
 
-{% block css %}
-{% endblock %}
+{% block css %}{% endblock %}
 
 {% block content %}
-<style>
-</style>
-<video width="320" height="240" autoplay>
-  <source src="movie.mp4" type="video/mp4">
-  <source src="movie.ogg" type="video/ogg">
-</video>
+  <style></style>
+  <video width="320" height="240" autoplay="autoplay">
+    <source src="movie.mp4" type="video/mp4">
+    <source src="movie.ogg" type="video/ogg">
+  </video>
 {% endblock content %}
