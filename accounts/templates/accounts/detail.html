@@ -78,27 +78,29 @@
         {% endif %}
         <hr>
         <div class="container">
-          <script src="/accounts/static/js/app.js">
-            <div class="row">
-              <h3 class="mt-1">최근 본 상품</h3>
-              {get_local !== null
-                ? get_local.map((a, i) => {
-                  return (
-                    <div class="card" style="width: 8rem; height: 10rem">
-                      <img src="..." class="card-img-top" alt="..." />
-                      <div class="card-body">
-                        <p class="card-text"><a href=""></a></p>
+          <div class="row">
+            <h3 class="mt-1">최근 본 상품</h3>
+            <script src="/accounts/static/js/app.js">
+              {
+                get_local !== null
+                  ? get_local.map((a, i) => {
+                    return (
+                      <div class="card" style="width: 8rem; height: 10rem">
+                        <img src="..." class="card-img-top" alt="..." />
+                        <div class="card-body">
+                          <p class="card-text"><a href="">{article.title}</a></p>
+                        </div>
                       </div>
-                    </div>
-                  );
-                })
-                : null}
-            </div>
-          </script>
-        </div>
-        <hr>
-        <div>
-          <h3>장바구니</h3>
+                    );
+                  })
+                  : null
+              }
+            </script>
+          </div>
+          <hr>
+          <div class="row">
+            <h3>장바구니</h3>
+          </div>
         </div>
       </div>
     </div>
