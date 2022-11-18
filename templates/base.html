@@ -25,7 +25,6 @@
 
 </head>
 
-{% bootstrap_css %}
 {% block css %}
 {% endblock css %}
 
@@ -128,7 +127,6 @@
 
   {% block body %}{% endblock body %}
   {% block content %}{% endblock content %}
-  {% bootstrap_javascript %}
 
 
   <div class="wrap">
@@ -168,6 +166,7 @@
           div2[i].classList.remove("clicked");
         }
       }
+    }
 
       function init() {
         for (var i = 0; i < div2.length; i++) {
@@ -198,7 +197,6 @@
   </script>
 
 
-  </script>
   <footer class="fixed-bottom text-center bg-white">© 2022 님아 돈 좀, Game Goods store by 17조</footer>
 </body>
 
