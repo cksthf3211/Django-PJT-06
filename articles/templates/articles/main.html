@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block css %}{% endblock %}
+
+{% block content %}
+<video width="100%" src="{% static 'video/gg.mp4' %}" controls autoplay muted loop></video>
+{% endblock content %}
