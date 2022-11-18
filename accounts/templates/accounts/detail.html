@@ -16,6 +16,7 @@
   <div class="col-3 px-5 pt-3">
     <h3 class="p-3 text-center">{{ user.nickname }}</h3>
     <ul class="list-group">
+      <li class="pt-2 list-group-item list-group-item-action text-center bg-success text-light">계정</li>
       <li class="pt-2 list-group-item list-group-item-action text-center">
         <a href="{% url 'accounts:profile_update' %}" class="font_style">프로필 설정</a>
       </li>
@@ -26,6 +27,11 @@
         <a class="font_style text-danger" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
           계정 삭제
         </a>
+      </li>
+    </ul>
+    <ul class="list-group">
+      <li class="pt-2 list-group-item list-group-item-action text-center">
+        <a href="{% url 'articles:shop' %}" class="font_style">장바구니</a>
       </li>
     </ul>
   </div>
@@ -98,13 +104,8 @@
             </script>
           </div>
           <hr>
-          <div class="row">
-            <h3>장바구니</h3>
-          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<script type="text/javascript" src="/accounts/static/js/detail.js"></script>
-{% endblock content %}
+  {% endblock content %}
