@@ -3,34 +3,50 @@
 <h2>detail</h2>
 <!-- 작성 디테일, 유저 정보(follow, user_like, information 등등) -->
 <div>
-  <p>{{ review.pk }}번 게시글 | 작성자:<a href="{% url 'accounts:detail' review.user.pk %}">#</a></p>
-  <p>글 작성:{{ review.created_at | review.updated_at }}</p>
+  <p>{{ review.pk }}번 게시글 | 작성자:<a href="{% url 'accounts:detail' review.user.pk %}">{{ review.user }}</a></p>
+  <p>글 작성:{{ review.created_at }} | {{ review.updated_at }}</p>
 </div>
 
 <!-- 내용 -->
-<table class="table m-5">
-  <thead>
-      <tr>
-        <th scope="col">작성자</th>
-        <th scope="col">제목</th>
-        <th scope="col">내용</th>
-        <th scope="col">작성 시간</th>
-        <th scope="col">이미지</th>
-      </tr>
-    </thead>
-  <tbody>
-      <th scope="row"><br><a class="text-decoration-none" href="{% url 'accounts:detail' review.user.pk %}">{{ review.user }}</a></th>
-      <td><br>{{review.title}}</td>
-      <td><br>{{review.content}}</td>
-      <td><br>{{review.created_at}}</td>
-      {% if review.image %}
-      <td><img src="{{ review.image.url }}" alt="image" width="170" height="100"></td>
-      {% endif %}
-      {% if review.thumbnail %}
-      <td><img src="{{ review.thumbnail.url }}" alt="thumbnail" width="170" height="100"></td>
-      {% endif %}
-  </tbody>
-</table>
+<div class="card text-center m-3 d-flex" style="height: 400px; width: 500px;">
+  {% if review.image %}
+  <img src="{{ review.image.url }}" alt="image" width="170" height="100"></td>
+  {% endif %}
+</div>
+
+<div class="card text-center m-3 d-flex" style="height: 400px; width: 500px;">
+  <div class="card-body">
+    <br>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th class="col-3">작성자</th>
+          <td class="col-9">
+            <a class="text-decoration-none" href="{% url 'accounts:detail' review.user.pk %}">{{ review.user }}</a>
+          </td>
+        </tr>
+        <tr>
+          <th class="col-3">제목</th>
+          <td class="col-9">
+            {{review.title}}
+          </td>
+        </tr>
+        <tr>
+          <th class="col-3">내용</th>
+          <td class="col-9">
+            {{review.content}}
+          </td>
+        </tr>
+        <tr>
+          <th class="col-3">작성 시간</th>
+          <td class="col-9">
+            {{review.created_at}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <!-- 수정삭제 -->
 <div class="m-5">

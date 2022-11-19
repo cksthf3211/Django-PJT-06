@@ -15,9 +15,9 @@ def create(request):
             temp = form.save(commit=False)
             temp.user = request.user
             temp.save()
-            return redirect('reviews:detail')
+            return redirect('reviews:index')
     else:
-        form = ReviewForm
+        form = ReviewForm()
     context = {
         'form' : form,
     }
