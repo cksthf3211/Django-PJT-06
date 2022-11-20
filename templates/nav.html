@@ -1,102 +1,112 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nav</title>
 </head>
+
 <body>
   <nav class="navbar navbar-expand-lg navbar-custom"
-  style="font-size:30px;padding-bottom: 0px;padding-top: 0px;box-shadow: 1px 1px 0 0px #dddddd;"">
+    style="font-size:30px;padding-bottom: 0px;padding-top: 0px;box-shadow: 1px 1px 0 0px #dddddd;">
   <div class=" container-fluid">
-  <a class="navbar-brand" href="{% url 'articles:index' %}">
-    <img class="" src="{% static 'images/logo.png' %}" alt="logo" height="75">
-  </a>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-custom"
-    aria-controls="navbar-custom" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbar-custom">
-    <ul class="navbar-nav navbar-menu" style="margin-left: 5px;">
-      <li class="nav-item" style="padding-bottom: 0px;">
-        <a class="nav-link" aria-current="page" href="{% url 'articles:index' %}">Home</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Collections by Category
-        </a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="">APPAREL</a></li>
-          <li><a class="dropdown-item" href="">GAMES</a></li>
-          <li><a class="dropdown-item" href="">COLLECTIBLES</a></li>
-          <li><a class="dropdown-item" href="">HOME & OFFICE</a></li>
-          <li><a class="dropdown-item" href="">BOOKS</a></li>
-          <li><a class="dropdown-item" href="">MUSIC & VIDEO</a></li>
-          <li><a class="dropdown-item" href="">ARTS & POSTERS</a></li>
-          <li><a class="dropdown-item" href="">ACCESSORIES</a></li>
-        </ul>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Collections by Studio
-        </a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="">STARDEW VALLEY</a></li>
-          <li><a class="dropdown-item" href="">X BOX</a></li>
-          <li><a class="dropdown-item" href="">PLAY STATION</a></li>
-          <li><a class="dropdown-item" href="">ATLUS</a></li>
-          <li><a class="dropdown-item" href="">HADES</a></li>
-          <li><a class="dropdown-item" href="">RARE</a></li>
-        </ul>
-      </li>
-      <div class="search-box">
-        <form action="" method="post">
-          {% csrf_token %}
-          <input class="search-txt" type="text" placeholder="" size="15" name="q" value="{{q}}"
-            style="vertical-align: top;">
-          <button class="search-btn" type="submit" maxlength="50" style="height: 27px;width:32px;">
-            <img src="../static/images/animat-rocket.gif" alt="" class="jb-b" style="width:200%; margin-right:5px;">
-            <img src="../static/images/animat-rocket-color.gif" alt="" class="jb-c"
-              style="width: 18%; margin-top: -6px; margin-left:185.5px;">
-          </button>
-        </form>
-      </div>
-    </ul>
+    <a class="navbar-brand" href="{% url 'articles:index' %}">
+      <img class="" src="{% static 'images/logo.png' %}" alt="logo" height="75">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-custom"
+      aria-controls="navbar-custom" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar-custom">
+      <ul class="navbar-nav navbar-menu" style="margin-left: 5px;">
+        <li class="nav-item" style="padding-bottom: 0px;">
+          <a class="nav-link" aria-current="page" href="{% url 'articles:index' %}">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Collections by Category
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="">APPAREL</a></li>
+            <li><a class="dropdown-item" href="">GAMES</a></li>
+            <li><a class="dropdown-item" href="">COLLECTIBLES</a></li>
+            <li><a class="dropdown-item" href="">HOME & OFFICE</a></li>
+            <li><a class="dropdown-item" href="">BOOKS</a></li>
+            <li><a class="dropdown-item" href="">MUSIC & VIDEO</a></li>
+            <li><a class="dropdown-item" href="">ARTS & POSTERS</a></li>
+            <li><a class="dropdown-item" href="">ACCESSORIES</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Collections by Studio
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="">STARDEW VALLEY</a></li>
+            <li><a class="dropdown-item" href="">X BOX</a></li>
+            <li><a class="dropdown-item" href="">PLAY STATION</a></li>
+            <li><a class="dropdown-item" href="">ATLUS</a></li>
+            <li><a class="dropdown-item" href="">HADES</a></li>
+            <li><a class="dropdown-item" href="">RARE</a></li>
+          </ul>
+        </li>
+        <div class="search-box">
+          <form action="" method="post">
+            {% csrf_token %}
+            <input class="search-txt" type="text" placeholder="" size="15" name="q" value="{{q}}"
+              style="vertical-align: top;">
+            <button class="search-btn" type="submit" maxlength="50" style="height: 27px;width:32px;">
+              <img src="../static/images/animat-rocket.gif" alt="" class="jb-b" style="width:200%; margin-right:5px;">
+              <img src="../static/images/animat-rocket-color.gif" alt="" class="jb-c"
+                style="width: 18%; margin-top: -6px; margin-left:185.5px;">
+            </button>
+          </form>
+        </div>
+      </ul>
 
-    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 navbar-menu">
-      {% if user.is_authenticated %} {# 유저가 로그인 중이면 #}
-      {% if user.profile_image %}
-      {% if 'http' in user.image_string %}
-      <a href="{% url 'accounts:detail' request.user.pk %}" class="nav-link"><span class="p-2"><img
-            class="profile-image rounded-circle" src="{{ user.profile_image }}" style="width: 3rem; height: 3rem;"
-            alt=""></span>{{ user.name }} 님 페이지</a>
-      {% else %}
-      <a href="{% url 'accounts:detail' request.user.pk %}" class="nav-link"><span class="p-2"><img
-            class="profile-image rounded-circle" src="{{ user.profile_image.url }}" style="width: 3rem; height: 3rem;"
-            alt=""></span>{{ user.name }} 님 페이지</a>
-      {% endif %}
-      {% endif %}
-      </li>
-      <li>
-        <a href="{% url 'accounts:logout' %}" class="nav-link">
-          <img class="" src="{% static 'images/log_out.png' %}" alt="logout">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 navbar-menu">
+        {% if user.is_authenticated %} {# 유저가 로그인 중이면 #}
+        {% if user.profile_image %}
+        <a href="{% url 'accounts:detail' request.user.pk %}" class="nav-link d-flex align-items-center">
+          <span class="p-2">
+            <img class="profile-image rounded-circle" src="{{ user.profile_image.url }}"
+              style="width: 3rem; height: 3rem;" alt="">
+          </span>
+          {{ user.name }} 님 페이지
         </a>
         {% else %}
-        <a href="{% url 'accounts:login' %}" class="nav-link">
-          <img class="" src="{% static 'images/log_in.png' %}" alt="login" style="width: 75%;">
+        <a href="{% url 'accounts:detail' request.user.pk %}" class="nav-link d-flex align-items-center">
+          <span class="p-2">
+            <img src="{% static '/images/profile_default.png' %}" alt="default" width="65" height="45">
+          </span>
+          {{ user.name }} 님 페이지
         </a>
+        {% endif %}
+        </li>
+        <li>
+          <a href="{% url 'accounts:logout' %}" class="nav-link">
+            <img class="" src="{% static 'images/log_out.png' %}" alt="logout">
+          </a>
+          {% else %}
+          <a href="{% url 'accounts:login' %}" class="nav-link">
+            <img class="" src="{% static 'images/log_in.png' %}" alt="login" style="width: 75%;">
+          </a>
 
-      <li>
-        <a href="{% url 'accounts:signup' %}" class="nav-link">
-          <img class="" src="{% static 'images/sign_up.png' %}" alt="signup" style="width: 75%;">
-        </a>
-      </li>
-      {% endif %}
-      </li>
+        <li>
+          <a href="{% url 'accounts:signup' %}" class="nav-link">
+            <img class="" src="{% static 'images/sign_up.png' %}" alt="signup" style="width: 75%;">
+          </a>
+        </li>
+        {% endif %}
+        </li>
 
-    </ul>
-  </div>
-</nav>
+      </ul>
+    </div>
+  </nav>
 </body>
+
 </html>
