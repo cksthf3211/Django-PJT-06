@@ -7,5 +7,6 @@
     <p class="card-text">Price - {{ product.price }}</p>
     <a href="#" class="btn btn-primary">Buy Now</a>
   </div>
+  <a href="{% url 'reviews:create' %}" class="m-3"><button>리뷰작성</button></a>
 </div>
 {% endfor %}
