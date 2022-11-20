@@ -39,8 +39,7 @@
     <div class="pop_inner" style="display: flex; flex-direction:column; flex-wrap:  wrap;">
       <a href="https://lc.multicampus.com/k-digital/#/login"><img src="{% static '/images/believe.jpg' %}"
           style="width: 400%;"></a>
-      <div class="ticloseBtnDiv"
-        stlye="position:abolute; top: 0px; left: 0px; box-sizing: border-box; outline: none;">
+      <div class="ticloseBtnDiv" stlye="position:abolute; top: 0px; left: 0px; box-sizing: border-box; outline: none;">
         <button type="button" class="btn_close"><img
             src="https://cdn.gamemeca.com/design/images/common/btn_adclose.png"></button>
       </div>
@@ -50,17 +49,17 @@
 
 
 <div class="">
-  {% for article in articles %}
-    user: {{ article.user }}<br>
-    name: {{ article.name }}<br>
-    price: {{ article.price }}<br>
-   
-    {% if article.image %}
-    image: <img src="{{ article.image.url }}" alt="image">
-    {% endif %}
-    
+  {% for article in article %}
+  user: {{ article.user }}<br>
+  name: {{ article.name }}<br>
+  price: {{ article.price }}<br>
 
-    <hr>
+  {% if article.image %}
+  image: <img src="{{ article.image.url }}" alt="image">
+  {% endif %}
+
+
+  <hr>
   {% endfor %}
 </div>
 

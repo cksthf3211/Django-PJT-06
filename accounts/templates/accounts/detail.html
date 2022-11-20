@@ -106,8 +106,29 @@
             </script>
           </div>
           <hr>
+          <div class="my-3">
+            {% if user.review %}
+            <h3>작성한 리뷰 수: <span class="text-danger">{{ reviews_number }}개</span></h3>
+            {% else %}
+            <h3>작성한 리뷰 수: <span class="text-danger">0개</span></h3>
+            {% endif %}
+            <div class="row">
+              {% for review in user.review_set.all %}
+              {{ forloop.counter }}
+              <div class="card" style="width: 10rem;">
+                <img src="{{ review.image.url }}" alt="" class="card-img-top">
+                <div class="card-body">
+                  <a href="{% url 'reviews:detail' review.pk %}" style="text-decoration: none;">
+                    {{ reviews.detail }}
+                  </a>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  {% endblock content %}
+</div>
+{% endblock content %}
