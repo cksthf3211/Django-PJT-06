@@ -5,5 +5,14 @@
 {% block css %}{% endblock %}
 
 {% block content %}
-<video width="100%" src="{% static 'video/gg.mp4' %}" controls autoplay muted loop></video>
+<div class="" style="background-color: #000;">
+  <div class="container d-flex flex-column justify-content-center align-items-center" style="height: 100vh;">
+    <div class="">
+      <video width="100%" src="{% static 'video/gg.mp4' %}" controls autoplay muted loop></video>
+    </div>
+    <div class="mt-3">
+      <a href="{% url 'articles:index' %}" class="border p-3" style="color: #fff; text-decoration: none;">홈페이지로 이동</a>
+    </div>
+  </div>
+</div>
 {% endblock content %}
