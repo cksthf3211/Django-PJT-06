@@ -6,4 +6,8 @@ name: {{ article.name }}<br>
 price: {{ article.price }}<br>
 description: {{ article.description }}<br>
 
+{% if article.image %}
+image: <img src="{{ article.image.url }}" alt="image">
+{% endif %}
+
 {% endblock content %}
