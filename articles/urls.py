@@ -8,6 +8,6 @@ urlpatterns = [
     path("articles/", views.index, name="index"),
     path("articles/shop/", views.shop, name="shop"),
     path("", views.main, name="main"),
-    path('articles/products/', views.products, name='products'),
+    path('articles/create/', views.create, name='create'),
     # path('', views.AllListView.as_view(), name='all_list'),
 ]

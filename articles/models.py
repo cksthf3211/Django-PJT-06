@@ -2,10 +2,10 @@ from django.db import models
 
 # Create your models here.
 
-class Product(models.Model):
-    productname = models.CharField(max_length=200)
-    price = models.DecimalField(max_digits=5, decimal_places=2)
+class Article(models.Model):
+    name = models.CharField(max_length=200)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField()
-    image = models.CharField(max_length=5000, null=True, blank=True)
+    image = models.ImageField(upload_to="article/", blank=True)
 
 

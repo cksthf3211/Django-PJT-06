@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import *
+from .models import Article
+from .forms import ArticleForm
 
 # Create your views here.
 
@@ -13,6 +14,18 @@ def shop(request):
 def main(request):
     return render(request, "articles/main.html")
 
-def products(request):
-    products = Product.objects.all()
-    return render(request, 'products.html', {'products':products})
+def create(request):
+    if request.method == "POST":
+        form = ArticleForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("articles:index")
+    else:
+        form = ArticleForm()
+    return render(
+        request,
+        "articles/create.html",
+        {
+            "form": form,
+        },
+    )
