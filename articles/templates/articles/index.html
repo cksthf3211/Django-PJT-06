@@ -4,6 +4,11 @@
 {% block body %}
 {% include 'nav.html' %}
 
+<style>
+  .card{
+    margin-bottom: 20px;
+  }
+  </style>
 
 <div class="container-fluid" style="padding: 0px; margin: 0px;">
   <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -47,21 +52,39 @@
   </div>
 </div>
 
+<div class="container">
+  <h1 style="text-align:center; margin-bottom:1.5rem; font-size:3rem; color:#545151;">Latests</h1>
+  <div class="row row-cols-3 row-cols-md-4 g-8">
+    {% for article in articles %}
+    <div class="col">
+      <a href="{% url 'articles:detail' article.pk %}">
+      <div class="card" style="height:300px; border-radius:1.5rem;">
+        {% if article.image %}
+        <img src="{{ article.image.url }}" class="card-img-top" alt="" style="height:200px;">
+        {% endif %}
+        <div class="card-body">
+          <a href="{% url 'articles:detail' article.pk %}" class="text-decoration-none"><h5 style="font-size:35px; color:#545151; text-align:center;" class="card-title">{{ article.name }}</h5></a>
+          <p class="card-text">  price: {{ article.price }} </p> 
+        </div>
+      </div>
+     </a>
+    {% endfor %}
+  </div>
 
-<div class="">
-  {% for article in article %}
+<!-- <div class="">
+  {% for article in articles %}
   user: {{ article.user }}<br>
   name: {{ article.name }}<br>
   price: {{ article.price }}<br>
 
   {% if article.image %}
   image: <img src="{{ article.image.url }}" alt="image">
-  {% endif %}
+  {% endif %} -->
 
 
-  <hr>
+  <!-- <hr>
   {% endfor %}
-</div>
+</div> -->
 
 
 {% endblock body %}

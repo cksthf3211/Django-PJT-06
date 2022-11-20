@@ -6,7 +6,7 @@ from .forms import ArticleForm
 
 
 def index(request):
-    articles = Article.objects.all()
+    articles = Article.objects.all()[:8]
 
     return render(
         request,
