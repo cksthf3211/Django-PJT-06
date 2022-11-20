@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from .models import *
 
 # Create your views here.
 
@@ -11,3 +12,7 @@ def shop(request):
 
 def main(request):
     return render(request, "articles/main.html")
+
+def products(request):
+    products = Product.objects.all()
+    return render(request, 'products.html', {'products':products})
