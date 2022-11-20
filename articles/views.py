@@ -6,8 +6,16 @@ from .forms import ArticleForm
 
 
 def index(request):
-    return render(request, "articles/index.html")
+    articles = Article.objects.all()
 
+    return render(
+        request,
+        "articles/index.html",
+        {
+            "articles": articles,
+        },
+    )
+    
 def shop(request):
     return render(request, "articles/shop.html")
 
