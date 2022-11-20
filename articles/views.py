@@ -6,8 +6,14 @@ from django.shortcuts import render, redirect
 def index(request):
     return render(request, "articles/index.html")
 
+
 def shop(request):
     return render(request, "articles/shop.html")
 
+
 def main(request):
     return render(request, "articles/main.html")
+
+
+def detail(request):
+    return render(request, "articles/detail.html")

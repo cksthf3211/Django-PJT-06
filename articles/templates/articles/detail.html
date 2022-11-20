@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% block body %}
+<div class="container">
+  <div class="detail-top" style="padding-top:30px;">
+    <div class="detailArea">
+      <div class="imgArea-wrap">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="{% static 'images/carouseldetail-1.jpg' %}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="{% static 'images/carouseldetail-1.jpg' %}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="{% static 'images/carouseldetail-1.jpg' %}" class="d-block w-100" alt="...">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+      <div class="infoArea-wrap">
+        <div class="infoArea">
+          <div class="detail-fixed-box" style="position: relative;">
+            <div class="fixed-box-contents"
+              style="height: 394.25px; margin-bottom: 0px; margin-right:0px; max-height: none;">
+              <div class="headingArea">
+                <h2>상품명</h2>
+              </div>
+              <div class="xans-element- xans-product xans-product-detaildesign">
+                <!--
+                  출력 갯수 지정 변수, 없으면 설정된 전체가 나옵니다.
+                  count = 10
+                -->
+                <table border="1" summary style="border: 0;
+                  font-size: 12px;
+                  margin: 8px 0;">
+                  <caption> 기본 정보</caption>
+                  <tbody>
+                    <tr class="product_name_css  xans-record-" style="display: none;">
+                      <th scope="row">상품명</th>
+                      <td><span style="font-size:17px;color:#555555;">여기상품명입력</span><span class="df-custom-add"></span>
+                      </td>
+                    </tr>
+                    <tr class="prd_brand_css  xans-record-">
+                      <th scope="row">브랜드</th>
+                      <td><span style="font-size:12px;color:#555555;">여기브랜드입력</span><span class="df-custom-add"></span>
+                      </td>
+                    </tr>
+                    <tr class="product_custom_css  xans-record-">
+                      <th scope="row">소비자가</th>
+                      <td><span style="font-size:14px;color:#555555;"><span
+                            id="span_product_price_custom"><strike>여기가격</strike></span></span><span
+                          class="df-custom-add"></span>
+                      </td>
+                    </tr>
+                    <tr class="product_price_css  xans-record-">
+                      <th scope="row">판매가</th>
+                      <td><span style="font-size:14px;color:#222222;font-weight:bold;"><strong
+                            id="span_product_price_text">여기판매가</strong><input id="product_price" name="product_price"
+                            value="" type="hidden"></span><span class="df-custom-add">
+                          <div class="discountrate"><span class="rate">할인</span>% OFF</div>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr class="delivery_price_css  xans-record-">
+                      <th scope="row">배송비</th>
+                      <td><span style="font-size:12px;color:#555555;"><span class="delv_price_B"><input
+                              id="delivery_cost_prepaid" name="delivery_cost_prepaid" value="P"
+                              type="hidden"><strong>배송비</strong> (00000원 이상 구매 시 무료)</span></span><span
+                          class="df-custom-add"></span>
+                      </td>
+                    </tr>
+
+                    <tr class="review_cnt_css  xans-record-">
+                      <th scope="row">사용후기</th>
+                      <td><span style="font-size:12px;color:#555555;">숫자</span><span class="df-custom-add"></span>
+                      </td>
+                    </tr>
+                    <tr class="qna_cnt_css  xans-record-">
+                      <th scope="row">상품문의</th>
+                      <td><span style="font-size:12px;color:#aa9191;">숫자</span><span class="df-custom-add"></span>
+                      </td>
+                    </tr>
+                  </tbody>
+
+                </table>
+              </div>
+              <ul border="1" summary="" class="xans-element- xans-product xans-product-option xans-record-"
+                style="border-bottom: 1px solid #e7e7e7;">
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+{% endblock body %}

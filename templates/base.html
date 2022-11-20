@@ -82,9 +82,10 @@
             <input class="search-txt" type="text" placeholder="" size="15" name="q" value="{{q}}"
               style="vertical-align: top;">
             <button class="search-btn" type="submit" maxlength="50" style="height: 27px;width:32px;">
-              <img src="../static/images/animat-rocket.gif" alt="" class="jb-b" style="width:200%; margin-right:5px;">
-              <img src="../static/images/animat-rocket-color.gif" alt="" class="jb-c"
-                style="width: 18%; margin-top: -6px; margin-left:185.5px;">
+              <img src="{% static 'images/animat-rocket.gif' %}" alt="" class="jb-b"
+                style="width:200%; margin-right:5px;">
+              <img src="{% static 'images/animat-rocket-color.gif' %}" alt="" class="jb-c"
+                style="width: 18%; margin-top: -6px; margin-right: 5px;">
             </button>
           </form>
         </div>
@@ -129,25 +130,6 @@
   {% block content %}{% endblock content %}
 
 
-  <div class="wrap">
-    <a href="#pop_info_1" class="btn_open"></a>
-
-
-    <div id="pop_info_1" class="pop_wrap" style="display:fixed;">
-      <div class="pop_inner" style="display: flex; flex-direction:column; flex-wrap:  wrap;">
-        <a href="https://lc.multicampus.com/k-digital/#/login"><img src="{% static '/images/believe.jpg' %}"
-            style="width: 400%;"></a>
-        <div class="ticloseBtnDiv"
-          stlye="position:abolute; top: 0px; left: 0px; box-sizing: border-box; outline: none;">
-          <button type="button" class="btn_close"><img
-              src="https://cdn.gamemeca.com/design/images/common/btn_adclose.png"></button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
 
   <script>
     var div2 = document.getElementsByClassName("search-txt");
@@ -168,11 +150,11 @@
       }
     }
 
-      function init() {
-        for (var i = 0; i < div2.length; i++) {
-          div2[i].addEventListener("click", handleClick);
-        }
+    function init() {
+      for (var i = 0; i < div2.length; i++) {
+        div2[i].addEventListener("click", handleClick);
       }
+    }
 
     init();
 
