@@ -2,9 +2,11 @@
 
 {% block content %}
   
-name: {{ article.name }}<br>
-price: {{ article.price }}<br>
-description: {{ article.description }}<br>
+Name: {{ article.name }}<br>
+Price: {{ article.price }}<br>
+Category: {{ article.category }}<br>
+Studio: {{ article.studio}}<br>
+Description: {{ article.description }}<br>
 
 {% if article.image %}
 image: <img src="{{ article.image.url }}" alt="image">
