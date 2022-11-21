@@ -4,7 +4,6 @@ from .forms import ArticleForm
 
 # Create your views here.
 
-
 def index(request):
     articles = Article.objects.all()[:8]
 
@@ -17,7 +16,8 @@ def index(request):
     )
     
 def shop(request):
-    return render(request, "articles/shop.html")
+    articles = Article.objects.all()[:8]
+    return render(request, "articles/shop.html", {"articles": articles})
 
 def main(request):
     return render(request, "articles/main.html")
