@@ -174,7 +174,7 @@ MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 #     AWS_REGION,
 # )
 
-DEBUG = os.getenv("DEBUG") == "True"
+DEBUG = os.getenv("DEBUG") == False
 
 if DEBUG == True: 
     # 개발환경
