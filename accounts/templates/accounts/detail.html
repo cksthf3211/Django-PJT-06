@@ -205,22 +205,6 @@
         <div class="container">
           <div class="row">
             <h5 class="mt-1">최근 본 상품</h5>
-            <script src="/accounts/static/js/app.js">
-              {
-                get_local !== null
-                  ? get_local.map((a, i) => {
-                    return (
-                      <div class="card" style="width: 8rem; height: 10rem">
-                        <img src="..." class="card-img-top" alt="..." />
-                        <div class="card-body">
-                          <p class="card-text"><a href="">{article.title}</a></p>
-                        </div>
-                      </div>
-                    );
-                  })
-                  : null
-              }
-            </script>
           </div>
           <hr>
           <div class="my-3">
