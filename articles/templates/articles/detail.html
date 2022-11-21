@@ -3,6 +3,9 @@
 {% load django_bootstrap5 %}
 {% block body %}
 {% include 'nav.html' %}
+{% block content %}
+
+
 <div class="container" style="min-height: 600px;">
   <div class="detail-top" style="padding-top:30px;">
     <div class="detailArea" style="min-height:530px;">
@@ -83,7 +86,6 @@
                           class="df-custom-add"></span>
                       </td>
                     </tr>
-
                     <tr class="review_cnt_css  xans-record-">
                       <th scope="row">사용후기</th>
                       <td><span style="font-size:12px;color:#555555;">숫자</span><span class="df-custom-add"></span>
@@ -327,9 +329,12 @@
 
 
 <!--div>
-name: {{ article.name }}<br>
-price: {{ article.price }}<br>
-description: {{ article.description }}<br>
+  
+Name: {{ article.name }}<br>
+Price: {{ article.price }}<br>
+Category: {{ article.category }}<br>
+Studio: {{ article.studio}}<br>
+Description: {{ article.description }}<br>
 
 {% if article.image %}
 image: <img src="{{ article.image.url }}" alt="image">

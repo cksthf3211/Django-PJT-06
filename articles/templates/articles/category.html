@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+{% block content %}
+{% block body %}
+{% include 'nav.html' %}
+
+
+<div class="container">
+  <h1 style="text-align:center; margin-bottom:1.5rem; font-size:3rem; color:#545151;">Popular Items</h1>
+  <div class="row row-cols-3 row-cols-md-4 g-8">
+    {% for article in articles %}
+    <div class="col">
+      <a href="{% url 'articles:detail' article.pk %}">
+      <div class="card" style="height:300px; border-radius:1.5rem;">
+        {% if article.image %}
+        <img src="{{ article.image.url }}" class="card-img-top" alt="" style="height:200px;">
+        {% endif %}
+        <div class="card-body">
+          <a href="{% url 'articles:detail' article.pk %}" class="text-decoration-none"><h5 style="font-size:25px; color:#393980; text-align:center;" class="card-title">{{ article.name }}</h5></a>
+          <p class="card-text" style="font-size:13px; color:#34344e; text-align:center;">  price: $ {{ article.price }} </p> 
+        </div>
+      </div>
+     </a>
+    </div>
+    {% endfor %}
+  </div>
+
+
+    <!-- 페이징처리 시작 -->
+    <ul class="pagination justify-content-center pagination-lg">
+      <!-- Previous페이지 -->
+      {% if articles.has_previous %}
+      <li class="page-item">
+          <a class="page-link" href="?page={{ articles.previous_page_number }}&searched={{searched}}">Previous</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">Previous</a>
+      </li>
+      {% endif %}
+      <!-- 페이지리스트 -->
+      {% for page_number in articles.paginator.page_range %}
+      {% if page_number >= articles.number|add:-3 and page_number <= articles.number|add:3 %}
+      {% if page_number == articles.number %}
+      <li class="page-item active" aria-current="page">
+          <a class="page-link" href="?page={{ page_number }}&searched={{searched}}">{{ page_number }}</a>
+      </li>
+      {% else %}
+      <li class="page-item">
+          <a class="page-link" href="?page={{ page_number }}&searched={{searched}}">{{ page_number }}</a>
+      </li>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+      <!-- Next페이지 -->
+      {% if articles.has_next %}
+      <li class="page-item">
+          <a class="page-link" href="?page={{ articles.next_page_number }}&searched={{searched}}">Next</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">Next</a>
+      </li>
+      {% endif %}
+  </ul>
+  <!-- 페이징처리 끝 -->
+  </div>
+{% endblock %}

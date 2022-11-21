@@ -12,5 +12,8 @@ urlpatterns = [
     path("articles/detail/", views.detail, name="detail"),
     path("articles/<int:pk>/update/", views.update, name="update"),
     path("articles/<int:pk>/delete/", views.delete, name="delete"),
+    path("<category>/category/", views.category, name="category"),
+    path("<studio>/studio/", views.studio, name="studio"),
+    path("search/", views.search, name="search"),
     # path('', views.AllListView.as_view(), name='all_list'),
 ]
