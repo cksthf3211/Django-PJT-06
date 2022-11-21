@@ -15,19 +15,22 @@ def index(request):
             "articles": articles,
         },
     )
-    
+
+
 def shop(request):
     return render(request, "articles/shop.html")
 
+
 def main(request):
     return render(request, "articles/main.html")
+
 
 def create(request):
     if request.method == "POST":
         form = ArticleForm(request.POST, request.FILES)
         if form.is_valid():
             article = form.save(commit=False)
-            article.user=request.user
+            article.user = request.user
             article.save()
             return redirect("articles:index")
     else:
@@ -41,15 +44,8 @@ def create(request):
     )
 
 
-def detail(request, pk):
-    article = Article.objects.get(pk=pk)
-    return render(
-        request,
-        "articles/detail.html",
-        {
-            "article": article,
-        },
-    )
+def detail(request):
+    return render(request, "articles/detail.html")
 
 
 def update(request, pk):
