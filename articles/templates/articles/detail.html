@@ -334,5 +334,8 @@ description: {{ article.description }}<br>
 {% if article.image %}
 image: <img src="{{ article.image.url }}" alt="image">
 {% endif %}
+{% endblock content %}
 </div -->
+<a href="{% url 'reviews:create' %}" class="m-3"><button>리뷰작성</button></a>
 {% endblock body %}
+
