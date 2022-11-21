@@ -57,8 +57,14 @@ def logout(request):
 @login_required
 def detail(request, pk):
     user = get_object_or_404(get_user_model(), pk=pk)
+    followers_number = user.followers.count()
+    followings_number = user.followings.count()
+    reviews_number = user.review_set.count()
     context = {
         "user": user,
+        "followers_number": followers_number,
+        "followings_number": followings_number,
+        "reviews_number": reviews_number,
     }
     return render(request, "accounts/detail.html", context)
 
@@ -105,3 +111,23 @@ def delete(request):
         messages.error(request, "error")
         return render(request, "articles:index")
     return redirect("articles:index")
+
+@login_required
+def follow(request, pk):
+    user = get_object_or_404(get_user_model(), id=pk)
+    if user != request.user:
+        if request.user in user.followers.all():
+            user.followers.remove(request.user)
+        else:
+            user.followers.add(request.user)
+    return redirect("accounts:detail", pk)
+
+@login_required
+def reviews(request, pk):
+    user = get_object_or_404(get_user_model(), id=pk)
+    reviews = Review.objects.filter(user=user)
+    context = {
+        "reviews": reviews,
+        "user": user,
+    }
+    return render(request, "accounts/detail.html", context)
