@@ -21,7 +21,9 @@
         <a href="{% url 'accounts:detail' user.pk %}" class="font_style">내 계정</a>
       </li>
       <li class="pt-2 list-group-item list-group-item-action text-center">
-        <a href="{% url 'accounts:follow_list' user.pk %}" class="font_style">팔로우 관리</a>
+        <a class="font_style" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          팔로잉 목록
+        </a>
       </li>
       <li class="pt-2 list-group-item list-group-item-action text-center">
         <a href="{% url 'accounts:profile_update' %}" class="font_style">프로필 설정</a>
@@ -44,6 +46,38 @@
       </li>
     </ul>
   </div>
+  {% else %}
+  <!-- 타 유저 -->
+  <div class="col-2 px-5 pt-3">
+    <ul class="list-group mb-1">
+      <li class="pt-2 list-group-item list-group-item-action text-center bg-success text-light">
+        {{ user.nickname }}
+      </li>
+    </ul>
+    <ul class="list-group-item list-group-item-action text-center">
+      {% csrf_token %}
+      <form id="follow-form" data-user-id="{{ user.pk }}">
+        {% if request.user in user.followers.all %}
+        <li class="pt-2 list-group-item list-group-item-action text-center">
+          <a href="{% url 'accounts:follow' user.pk %}" class="font_style">언팔로우</a>
+        </li>
+        {% else %}
+        <li class="pt-2 list-group-item list-group-item-action text-center">
+          <a href="{% url 'accounts:follow' user.pk %}" class="font_style">팔로우</a>
+        </li>
+        {% endif %}
+      </form>
+    </ul>
+    <ul class="list-group">
+      <li class="pt-2 list-group-item list-group-item-action text-center bg-success text-light">
+        쇼핑 내역
+      </li>
+      <li class="pt-2 list-group-item list-group-item-action text-center">
+        <a href="{% url 'articles:shop' %}" class="font_style">장바구니</a>
+      </li>
+    </ul>
+  </div>
+  {% endif %}
   <!-- Modal -->
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -67,7 +101,31 @@
       </div>
     </div>
   </div>
-  {% endif %}
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fs-5" id="exampleModalLabel">내가 팔로우 하는 사람</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul class="list-group">
+            {% for user in user.followers.all %}
+            <li class="list-group-item list-group-item-action">
+              <a href="{% url 'accounts:detail' user.pk %}" style="text-decoration: none;" class="text-black">
+                {{ user.nickname }}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- 프로필 -->
   <div class="col-9 px-4">
     <div class="container">
@@ -77,7 +135,7 @@
           style="width: 6rem; height: 6rem;">
         {% else %}
         <img src="{% static '/images/profile_default.png' %}" alt="default" class="rounded-circle"
-          style="width: 10rem; height: 6rem;">
+          style="width: 9rem; height: 6rem;">
         {% endif %}
         <div class='px-5 pt-3'>
           <h4 class='fw-bold'>
@@ -144,4 +202,5 @@
       </div>
     </div>
   </div>
-  {% endblock content %}
+</div>
+{% endblock content %}
