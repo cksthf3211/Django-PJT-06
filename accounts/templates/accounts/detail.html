@@ -66,9 +66,11 @@
     <div class="container">
       <div class="my-3 d-flex">
         {% if user.profile_image %}
-        <img src="{{ user.profile_image.url }}" alt="{{ user.profile_image }}" class="rounded-circle">
+        <img src="{{ user.profile_image.url }}" alt="{{ user.profile_image }}" class="rounded-circle"
+          style="width: 8rem; height: 8rem;">
         {% else %}
-        <img src="{% static '/images/profile_default.png' %}" alt="default">
+        <img src="{% static '/images/profile_default.png' %}" alt="default" class="rounded-circle"
+          style="width: 12rem; height: 8rem;">
         {% endif %}
       </div>
       <div class="mx-5 mt-3">
