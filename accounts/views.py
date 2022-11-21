@@ -112,16 +112,9 @@ def follow(request, pk):
     if user != request.user:
         if request.user in user.followers.all():
             user.followers.remove(request.user)
-            followed = False
         else:
             user.followers.add(request.user)
-            followed = True
-        context = {
-            "followed": followed,
-            "followings": user.followings.count(),
-            "followers": user.followers.count(),
-        }
-        return JsonResponse(context)
+    return redirect("accounts:detail", pk)
     
 @login_required
 def follow_list(request, pk):

@@ -73,10 +73,9 @@
               <input class="search-txt" type="text" placeholder="" size="15" name="q" value="{{q}}"
                 style="vertical-align: top;">
               <button class="search-btn" type="submit" maxlength="50" style="height: 27px;width:32px;">
-                <img src="{% static 'images/animat-rocket.gif' %}" alt="" class="jb-b"
-                  style="width:200%; margin-right:5px;">
-                <img src="{% static 'images/animat-rocket-color.gif' %}" alt="" class="jb-c"
-                  style="width: 18%; margin-top: -6px; margin-right: 5px;">
+                <img src="../static/images/animat-rocket.gif" alt="" class="jb-b" style="width:200%; margin-right:5px;">
+                <img src="../static/images/animat-rocket-color.gif" alt="" class="jb-c"
+                  style="width: 18%; margin-top: -6px; margin-left:185.5px;">
               </button>
             </form>
           </div>
@@ -84,20 +83,20 @@
 
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 navbar-menu">
           {% if user.is_authenticated %} {# 유저가 로그인 중이면 #}
-          {% if user.profile_image %}
+          {% if request.user.profile_image %}
           <a href="{% url 'accounts:detail' request.user.pk %}" class="nav-link d-flex align-items-center">
             <span class="p-2">
-              <img class="profile-image rounded-circle" src="{{ user.profile_image.url }}"
+              <img class="profile-image rounded-circle" src="{{ request.user.profile_image.url }}"
                 style="width: 3rem; height: 3rem;" alt="">
             </span>
-            {{ user.name }} 님 페이지
+            {{ request.user }}
           </a>
           {% else %}
           <a href="{% url 'accounts:detail' request.user.pk %}" class="nav-link d-flex align-items-center">
             <span class="p-2">
               <img src="{% static '/images/profile_default.png' %}" alt="default" width="65" height="45">
             </span>
-            {{ user.name }} 님 페이지
+            {{ request.user }}
           </a>
           {% endif %}
           </li>
