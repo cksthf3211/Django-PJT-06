@@ -4,7 +4,6 @@
 { % bootstrap_css % }
 {% block content %}
 {% include 'nav.html' %}
-
 <style>
   .font_style {
     text-decoration: none;
@@ -16,9 +15,16 @@
   <!-- 프로필 사이드 배너 -->
   {% if user == request.user %}
   <div class="col-2 px-5 pt-3">
-    <h3 class="p-3 text-center">{{ user.nickname }}</h3>
-    <ul class="list-group">
+    <ul class="list-group mb-1">
       <li class="pt-2 list-group-item list-group-item-action text-center bg-success text-light">계정</li>
+      <li class="pt-2 list-group-item list-group-item-action text-center">
+        <a href="{% url 'accounts:detail' user.pk %}" class="font_style">내 계정</a>
+      </li>
+      <li class="pt-2 list-group-item list-group-item-action text-center">
+        <a class="font_style" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          팔로우 목록
+        </a>
+      </li>
       <li class="pt-2 list-group-item list-group-item-action text-center">
         <a href="{% url 'accounts:profile_update' %}" class="font_style">프로필 설정</a>
       </li>
@@ -32,11 +38,50 @@
       </li>
     </ul>
     <ul class="list-group">
+      <li class="pt-2 list-group-item list-group-item-action text-center bg-success text-light">
+        쇼핑 내역
+      </li>
       <li class="pt-2 list-group-item list-group-item-action text-center">
         <a href="{% url 'articles:shop' %}" class="font_style">장바구니</a>
       </li>
     </ul>
   </div>
+  {% else %}
+  <!-- 타 유저 -->
+  <div class="col-2 px-5 pt-3">
+    <ul class="list-group mb-1">
+      <li class="pt-2 list-group-item list-group-item-action text-center bg-success text-light">
+        {% if user.nickname %}
+        {{ user.nickname }}
+        {% else %}
+        {{ user.username }}
+        {% endif %}
+      </li>
+    </ul>
+    <ul class="list-group-item list-group-item-action text-center">
+      {% csrf_token %}
+      <form id="follow-form" data-user-id="{{ user.pk }}">
+        {% if request.user in user.followers.all %}
+        <li class="pt-2 list-group-item list-group-item-action text-center">
+          <a href="{% url 'accounts:follow' user.pk %}" class="font_style">언팔로우</a>
+        </li>
+        {% else %}
+        <li class="pt-2 list-group-item list-group-item-action text-center">
+          <a href="{% url 'accounts:follow' user.pk %}" class="font_style">팔로우</a>
+        </li>
+        {% endif %}
+      </form>
+    </ul>
+    <ul class="list-group">
+      <li class="pt-2 list-group-item list-group-item-action text-center bg-success text-light">
+        쇼핑 내역
+      </li>
+      <li class="pt-2 list-group-item list-group-item-action text-center">
+        <a href="{% url 'articles:shop' %}" class="font_style">장바구니</a>
+      </li>
+    </ul>
+  </div>
+  {% endif %}
   <!-- Modal -->
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -60,33 +105,103 @@
       </div>
     </div>
   </div>
-  {% endif %}
+  <!-- followings Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fs-5" id="exampleModalLabel">내가 팔로우 하는 사람</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul class="list-group">
+            {% for user in user.followings.all %}
+            <li class="list-group-item list-group-item-action">
+              <a href="{% url 'accounts:detail' user.pk %}" style="text-decoration: none;" class="text-black">
+                {% if user.nickname %}
+                {{ user.nickname }}
+                {% else %}
+                {{ user.username }}
+                {% endif %}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-target="#exampleModal2" data-bs-toggle="modal"
+            data-bs-dismiss="modal">
+            팔로워 목록
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- followers Modal -->
+  <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fs-5" id="exampleModalLabel">나를 팔로우 하는 사람</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul class="list-group">
+            {% for user in user.followers.all %}
+            <li class="list-group-item list-group-item-action">
+              <a href="{% url 'accounts:detail' user.pk %}" style="text-decoration: none;" class="text-black">
+                {% if user.nickname %}
+                {{ user.nickname }}
+                {% else %}
+                {{ user.username }}
+                {% endif %}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-target="#exampleModal" data-bs-toggle="modal"
+            data-bs-dismiss="modal">
+            팔로잉 목록
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- 프로필 -->
   <div class="col-9 px-4">
     <div class="container">
       <div class="my-3 d-flex">
         {% if user.profile_image %}
         <img src="{{ user.profile_image.url }}" alt="{{ user.profile_image }}" class="rounded-circle"
-          style="width: 8rem; height: 8rem;">
+          style="width: 6rem; height: 6rem;">
         {% else %}
         <img src="{% static '/images/profile_default.png' %}" alt="default" class="rounded-circle"
-          style="width: 12rem; height: 8rem;">
+          style="width: 9rem; height: 6rem;">
         {% endif %}
+        <div class='px-5 pt-3'>
+          <h4 class='fw-bold'>
+            {{user.nickname}}
+          </h4>
+          {% if user.email %}
+          <div>{{user.email}}</div>
+          {% else %}
+          <div>등록된 이메일이 없습니다.</div>
+          {% endif %}
+          <div>
+            <p>
+              팔로워 수:
+              <span id="followers">{{user.followers.all|length}}</span>
+              | 팔로잉 수:
+              <span id="followings">{{user.followings.all|length}}</span>
+            </p>
+          </div>
+        </div>
       </div>
       <div class="mx-5 mt-3">
-        <h4 class="fw-bold">
-          아이디: {{ user.username }}
-        </h4>
-        {% if user.email %}
-        <div>
-          <p>email: {{ user.email }}</p>
-        </div>
-        {% else %}
-        <div>
-          <p>이메일 없음</p>
-        </div>
-        {% endif %}
-        <hr>
         <div class="container">
           <div class="row">
             <h5 class="mt-1">최근 본 상품</h5>
@@ -109,19 +224,14 @@
           </div>
           <hr>
           <div class="my-3">
-            {% if user.review %}
             <h5>작성한 리뷰 수: <span class="text-danger">{{ reviews_number }}개</span></h5>
-            {% else %}
-            <h5>작성한 리뷰 수: <span class="text-danger">0개</span></h5>
-            {% endif %}
             <div class="row">
               {% for review in user.review_set.all %}
-              {{ forloop.counter }}
-              <div class="card" style="width: 10rem;">
-                <img src="{{ review.image.url }}" alt="" class="card-img-top">
+              <div class="card mx-1" style="width: 10rem;">
+                <img src="{{ review.thumbnail.url }}" alt="" class="card-img-top" style="border-radius: 5px;">
                 <div class="card-body">
-                  <a href="{% url 'reviews:detail' review.pk %}" style="text-decoration: none;">
-                    {{ reviews.detail }}
+                  <a href="{% url 'reviews:detail' review.pk %}" style="text-decoration: none;" class="text-black">
+                    {{ review.title }}
                   </a>
                 </div>
               </div>
